@@ -1,0 +1,7 @@
+---
+- name: cat /etc/hosts
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: cat /etc/hosts file
+      command: cat /etc/hosts

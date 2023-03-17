@@ -4,6 +4,10 @@
 
   gather_facts: no
   tasks:
+  
+  
+  - name: Touch
+    command: sh -c 'touch ~/sampling-ansible-builtins.txt'
    
   - name:  Touch
     ansible.builtin.command: touch ~/sampling-ansible-builtins.txt

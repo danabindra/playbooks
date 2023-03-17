@@ -1,0 +1,15 @@
+---
+- name: Rename a file in home directory
+  hosts: localhost
+
+  gather_facts: no
+  tasks:
+   
+  - name:  Touch
+    ansible.builtin.command: touch ~/sampling-ansible-builtins.txt
+
+  - name:  Return message
+    ansible.builtin.command: cat /etc/hosts > ~/sampling-ansible-builtins.txt
+
+  - name: Copy file with timestamp
+    command: sh -c 'cp ~/sampling-ansible-builtins.txt ~/sampling-ansible-builtins.txt_$(date +%Y-%m-%d-%H-%M-%S)'

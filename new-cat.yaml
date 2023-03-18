@@ -2,7 +2,7 @@
 - name: Copy /etc/hosts to bbwtest.text
   hosts: localhost
   become: yes
-  become_user: danabindra
+  become_user: root
 
   vars:
     timestamp: "{{ ansible_date_time.iso8601_basic_short }}"

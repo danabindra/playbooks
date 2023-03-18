@@ -1,0 +1,14 @@
+---
+- name: Copy /etc/hosts to bbwtest.text
+  hosts: localhost
+  become: yes
+  become_user: danabindra
+
+  vars:
+    timestamp: "{{ ansible_date_time.iso8601_basic_short }}"
+
+  tasks:
+    - name: Copy /etc/hosts to bbwtest.text
+      copy:
+        src: /etc/hosts
+        dest: "/home/danabindra/bbwtest-{{ timestamp }}.text"

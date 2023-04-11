@@ -1,0 +1,23 @@
+
+name: Run playbook on all members of a load balancer
+author: FS DevOps
+description: 'Run playbook on all members of a load balancer'
+inputs:
+  load-balancer-id:
+    description: 'Load Balancer ID'
+    required: true
+  playbook-path:
+    description: 'This points to the location in your repository where your ansible playbook can be found. This can be the path to a .yml file containing the playbook, a directory containing the playbook, or a zip file containing the playbook.'
+    required: true
+  ssc-cloud-api-key:
+    description: 'SS&C Cloud API Key'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.load-balancer-id }}
+    - ${{ inputs.playbook-path }}
+    - ${{ inputs.ssc-cloud-api-key }}
+

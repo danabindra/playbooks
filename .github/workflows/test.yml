@@ -34,11 +34,9 @@ jobs:
     runs-on: [enterprise, linux, ephemeral]
     container: artifactory.ssnc.dev/docker-repos/pipeline/gitlabci/ssc-cloud-cli:1.4
     steps:
-      - uses: actions/checkout@v2
-
       - name: Restart Nifi Service
-      run: |
-        ls -al
+        run: |
+          ls -al
         
       
       

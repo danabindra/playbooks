@@ -36,8 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Restart Nifi Service 
-        run: |
-        cloudcli bolt pipeline -t $SSC_CLOUD_LOADBALANCER_ID --json | jq -r .[].ip | tr '\n' ',' | sed 's|.$||' --playbook-path ${{ github.inputs.playbook-path}}
-          
+      - name: Restart Nifi Service
+      run: |
+        ls -al
+        
+      
       

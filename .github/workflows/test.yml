@@ -38,6 +38,11 @@ jobs:
         run: |
           ls -al
       - name: Cat Playbok File
+        uses: danabindra/playbooks@main
+        with:
+          playbook-path: .
+        
+      - name: Other stuff
         run: |
           echo "github.event.inputs.playbook-path: ${{ github.event.inputs.playbook-path }}"
           echo ${{ github.event.inputs.playbook-path }} > playbook-path.txt

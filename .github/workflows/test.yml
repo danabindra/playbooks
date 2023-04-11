@@ -37,6 +37,14 @@ jobs:
       - name: Restart Nifi Service
         run: |
           ls -al
+      - name: Cat Playbok File
+        run: |
+          echo "github.event.inputs.playbook-path: ${{ github.event.inputs.playbook-path }}"
+          echo ${{ github.event.inputs.playbook-path }} > playbook-path.txt
+          echo "----------------------------------------------"
+          cat playbook-path.txt
+          
+          
         
       
       

@@ -31,8 +31,8 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   input-preparation:
-    runs-on: [enterprise, linux, ephemeral]
-    container: artifactory.ssnc.dev/docker-repos/pipeline/gitlabci/ssc-cloud-cli:1.4
+    runs-on: [ubuntu-latest]
+    # container: artifactory.ssnc.dev/docker-repos/pipeline/gitlabci/ssc-cloud-cli:1.4
     steps:
       - name: Restart Nifi Service
         run: |

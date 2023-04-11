@@ -1,0 +1,43 @@
+name: Lyric Nifi | BKS NAR Deployment
+
+env:
+  
+  SSC_CLOUD_LB_ID_DEV: loadbalancer-deca3126-dcb8-4bf5-9ca5-1658027ceeab
+  SSC_CLOUD_LB_ID_TEST: loadbalancer-fd22cf4b-39f0-4a41-9728-ee26fe0f96d4
+  SSC_CLOUD_LB_ID_UAT: loadbalancer-515efec6-a4e6-4519-81d5-d188fa8b620d
+  SSC_CLOUD_LB_ID_PROD: loadbalancer-5a20b7b9-48d1-457f-b2c9-33f2b420f0af
+  SSC_CLOUD_LB_ID_SANDBOX: loadbalancer-4bf45342-eecd-4a43-98e2-e96d69d8aa51
+
+
+  BECOME_USER: nifi
+  NIFI_SERVICE_NAME: nifi
+
+
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      load-balancer-id:
+        description: "Enter LB ID"
+        required: false
+      playbook-path:
+        description: "Path to playbook"
+        required: false
+      ssc-cloud-api-key:
+        description: 'SSC Cloud API Key'
+        required: true
+        
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  input-preparation:
+    runs-on: [enterprise, linux, ephemeral]
+    container: artifactory.ssnc.dev/docker-repos/pipeline/gitlabci/ssc-cloud-cli:1.4
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restart Nifi Service 
+        run: |
+        cloudcli bolt pipeline -t $SSC_CLOUD_LOADBALANCER_ID --json | jq -r .[].ip | tr '\n' ',' | sed 's|.$||' --playbook-path ${{ github.inputs.playbook-path}}
+          
+      

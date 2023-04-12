@@ -35,12 +35,12 @@ jobs:
   
     steps:
       - name: Restart Nifi Service
-        run: |
-          ls -al
-      - name: Cat Playbok File
         uses: danabindra/playbooks@main
         with:
           playbook-path: .
+          ssc-cloud-api-key: ${{ secrets.SSC_CLOUD_API_KEY }}
+          load-balancer-id: ${{ env.SSC_CLOUD_LB_ID_SANDBOX}}
+          
         
       - name: Other stuff
         run: |
